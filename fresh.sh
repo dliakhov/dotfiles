@@ -1,10 +1,16 @@
 #!/bin/sh
 
 echo "Setting up your Mac..."
+DOTFILES="~/.dotfiles"
 
 # Check for Oh My Zsh and install if we don't have it
 if test ! $(which omz); then
   /bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh)"
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+  # Install additional plugins
+  git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 fi
 
 # Check for Homebrew and install if we don't have it
@@ -22,7 +28,7 @@ fi
 
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.zshrc
-ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+ln -s $DOTFILES/.zshrc $HOME/.zshrc
 
 
 # Update Homebrew recipes
@@ -36,7 +42,11 @@ brew bundle --file $DOTFILES/Brewfile
 $DOTFILES/clone.sh
 
 # Symlink the Mackup config file to the home directory
+rm /Users/dmytro.liakhov/.mackup.cfg
 ln -s $DOTFILES/.mackup.cfg $HOME/.mackup.cfg
+
+# Add aliases
+ln -s $DOTFILES/aliases.zsh  $HOME/.aliases.zsh
 
 # Set macOS preferences - we will run this last because this will reload the shell
 source $DOTFILES/.macos

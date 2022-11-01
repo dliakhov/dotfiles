@@ -9,10 +9,6 @@ alias mux="tmuxinator"
 
 # Directories
 alias dotfiles="cd $DOTFILES"
-alias library="cd $HOME/Library"
-alias sites="cd $HOME/Sites"
-alias lara="sites && cd laravel/"
-alias docs="lara && cd docs/"
 
 # Git
 alias gst="git status"
