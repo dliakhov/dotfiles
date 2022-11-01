@@ -19,6 +19,8 @@ brew 'node'
 brew 'nvm'
 brew 'yarn'
 brew 'tfenv'
+brew 'direnv'
+brew 'kind'
 
 # Apps
 cask 'iterm2'
@@ -35,8 +37,6 @@ cask 'visual-studio-code'
 cask 'zoom'
 cask 'bluejeans'
 cask 'jetbrains-toolbox'
-cask 'direnv'
-cask 'kind'
 
 # Quicklook
 cask 'qlmarkdown'
