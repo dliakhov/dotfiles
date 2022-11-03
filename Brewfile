@@ -5,7 +5,6 @@ tap 'homebrew/cask-versions'
 tap 'homebrew/bundle'
 
 # Binaries
-brew 'awscli'
 brew 'zsh' # Latest Zsh version
 brew 'git'
 brew 'grep'
