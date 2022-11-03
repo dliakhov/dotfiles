@@ -38,6 +38,12 @@ brew update
 brew tap homebrew/bundle
 brew bundle --file $DOTFILES/Brewfile
 
+# NVM setup
+mkdir ~/.nvm
+
+# Add custom keyboard layouts
+cp keyboard_layouts/* ~/Library/Keyboard\ Layouts
+
 # Clone Github repositories
 $DOTFILES/clone.sh
 

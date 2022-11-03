@@ -123,30 +123,20 @@ export EDITOR="vim"
 export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
 
 # golang
-export PATH=$PATH:/Users/dmytro.liakhov/.gobrew/current/bin
+export PATH=$PATH:/Users/dmytro.liakhov/.gobrew/current/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export GOROOT=$(go env GOROOT)
-export GOBIN=$GOPATH/bin
-
-# for sezzle env
-export SEZZLE_ENVIRONMENT=local
-
-# source /usr/local/opt/kube-ps1/share/kube-ps1.sh
-# PROMPT='$(kube_ps1)'$PROMPT
-
-export NPM_TOKEN=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
+export GOBIN=$GOROOT/bin
 
 # super slow plugin
 export NVM_DIR="$HOME/.nvm"
 nvm() {
   if [[ -d $NVM_DIR ]]; then
     export NVM_DIR
-    # shellcheck disable=SC1090
-    source "${NVM_DIR}/nvm.sh"
-    if [[ -e ~/.nvm/alias/default ]]; then
-      PATH="${PATH}:${HOME}.nvm/versions/node/$(cat ~/.nvm/alias/default)/bin"
-    fi
+
+    [ -s "$(brew --prefix)/opt/nvm/nvm.sh" ] && \. "$(brew --prefix)/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix)/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
     # invoke the real nvm function now
     nvm "$@"
   else
