@@ -20,6 +20,7 @@ brew 'yarn'
 brew 'tfenv'
 brew 'direnv'
 brew 'kind'
+brew 'wget'
 
 # Apps
 cask 'iterm2'
