@@ -31,13 +31,13 @@ After backing up your old Mac you may now follow these install instructions to s
 1. [Generate a new public and private SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) by running:
 
    ```zsh
-   curl https://raw.githubusercontent.com/driesvints/dotfiles/HEAD/ssh.sh | sh -s "<your-email-address>"
+   curl https://raw.githubusercontent.com/dliakhov/dotfiles/HEAD/ssh.sh | sh -s "<your-email-address>"
    ```
 
 1. Clone this repo to `~/.dotfiles` with:
 
     ```zsh
-    git clone --recursive git@github.com:driesvints/dotfiles.git ~/.dotfiles
+    git clone --recursive git@github.com:dliakhov/dotfiles.git ~/.dotfiles
     ```
 
 1. Run the installation with:
