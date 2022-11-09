@@ -124,7 +124,7 @@ export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
 
 # golang
 export PATH=$PATH:/Users/dmytro.liakhov/.gobrew/current/go/bin
-export GOPATH=$HOME/go
+export GOPATH=$HOME/.gobrew/current/go
 export PATH=$PATH:$GOPATH/bin
 export GOROOT=$(go env GOROOT)
 export GOBIN=$GOROOT/bin
