@@ -35,12 +35,7 @@ cask 'transmit'
 cask 'protonvpn'
 cask 'visual-studio-code'
 cask 'zoom'
-cask 'bluejeans'
 cask 'jetbrains-toolbox'
-
-# Quicklook
-cask 'qlmarkdown'
-cask 'quicklook-json'
 
 # Fonts
 cask 'font-fira-code'

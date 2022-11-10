@@ -1,7 +1,6 @@
 #!/bin/sh
 
 echo "Setting up your Mac..."
-DOTFILES="~/.dotfiles"
 
 # Check for Oh My Zsh and install if we don't have it
 if test ! $(which omz); then
@@ -28,7 +27,7 @@ fi
 
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
 rm -rf $HOME/.zshrc
-ln -s $DOTFILES/.zshrc $HOME/.zshrc
+ln -s ~/.dotfiles/.zshrc $HOME/.zshrc
 
 
 # Update Homebrew recipes
@@ -42,17 +41,18 @@ brew bundle --file $DOTFILES/Brewfile
 mkdir ~/.nvm
 
 # Add custom keyboard layouts
-cp keyboard_layouts/* ~/Library/Keyboard\ Layouts
+cp ~/.dotfiles/keyboard_layouts/*  ~/Library/Keyboard\ Layouts
 
 # Clone Github repositories
-$DOTFILES/clone.sh
+~/.dotfiles/clone.sh
+
 
 # Symlink the Mackup config file to the home directory
 rm /Users/dmytro.liakhov/.mackup.cfg
-ln -s $DOTFILES/.mackup.cfg $HOME/.mackup.cfg
+ln -s ~/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 
 # Add aliases
-ln -s $DOTFILES/aliases.zsh  $HOME/.aliases.zsh
+ln -s ~/.dotfiles/.aliases.zsh  $HOME/.aliases.zsh
 
 # Set macOS preferences - we will run this last because this will reload the shell
-source $DOTFILES/.macos
+source ~/.dotfiles/.macos
