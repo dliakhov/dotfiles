@@ -122,12 +122,16 @@ export EDITOR="vim"
 # gobrew
 export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
 
+# bat
+export BAT_THEME="Coldark-Dark"
+
 # golang
 export PATH=$PATH:/Users/dmytro.liakhov/.gobrew/current/go/bin
-export GOPATH=$HOME/.gobrew/current/go
+export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
-export GOROOT=$(go env GOROOT)
+export GOROOT="$HOME/.gobrew/current/go"
 export GOBIN=$GOROOT/bin
+export GOPRIVATE=bitbucket.dentsplysirona.com/*
 
 # super slow plugin
 export NVM_DIR="$HOME/.nvm"
@@ -145,7 +149,18 @@ nvm() {
   fi
 }
 
+inspec() { docker run -it --rm -v $(pwd):/share chef/inspec "$@"; }
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(direnv hook zsh)"
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dmytro.liakhov/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dmytro.liakhov/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/dmytro.liakhov/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dmytro.liakhov/google-cloud-sdk/completion.zsh.inc'; fi
