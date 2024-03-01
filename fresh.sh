@@ -53,14 +53,14 @@ cp ~/.dotfiles/keyboard_layouts/*  ~/Library/Keyboard\ Layouts
 
 
 # Symlink the Mackup config file to the home directory
-rm /Users/dmytro.liakhov/.mackup.cfg
+rm $HOME/.mackup.cfg
 ln -s ~/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 
 # Add aliases
 ln -s ~/.dotfiles/.aliases.zsh $HOME/.aliases.zsh
 
 # create dir for Iterm
-mkdir /Users/dmytro.liakhov/iterm-config
+mkdir ~/iterm-config
 cp ~/Library/Preferences/com.googlecode.iterm2.plist ~/iterm-config
 
 
