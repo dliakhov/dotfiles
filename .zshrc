@@ -126,12 +126,26 @@ export PATH="$HOME/.gobrew/current/bin:$HOME/.gobrew/bin:$PATH"
 export BAT_THEME="Coldark-Dark"
 
 # golang
-export PATH=$PATH:/Users/dmytro.liakhov/.gobrew/current/go/bin
+export PATH=$PATH:$HOME/.gobrew/current/go/bin
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 export GOROOT="$HOME/.gobrew/current/go"
 export GOBIN=$GOROOT/bin
+
+# Dentlply Sirona
 export GOPRIVATE=bitbucket.dentsplysirona.com/*
+
+# devcontainer Sirona
+export LANG="en_US.UTF-8"
+export LC_ALL="POSIX"
+
+export PATH=$PATH:/usr/local/opt/mysql-client/bin
+
+# add google cloud sdk
+export PATH=$PATH:~/google-cloud-sdk/bin
+
+# add psql
+export PATH="/usr/local/opt/libpq/bin:$PATH"
 
 # super slow plugin
 export NVM_DIR="$HOME/.nvm"
@@ -155,12 +169,12 @@ inspec() { docker run -it --rm -v $(pwd):/share chef/inspec "$@"; }
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 eval "$(direnv hook zsh)"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dmytro.liakhov/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/dmytro.liakhov/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/dmytro.liakhov/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/dmytro.liakhov/google-cloud-sdk/completion.zsh.inc'; fi

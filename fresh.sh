@@ -22,7 +22,12 @@ fi
 
 if test ! $(which gobrew); then
   /bin/bash -c "$(curl -sLk https://git.io/gobrew)"
-  gobrew install 1.19.2
+  gobrew install 1.22.0
+fi
+
+# Install SDKMAN 
+if test ! $(which sdk); then
+  curl -s "https://get.sdkman.io" | bash
 fi
 
 # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
@@ -52,7 +57,7 @@ rm /Users/dmytro.liakhov/.mackup.cfg
 ln -s ~/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 
 # Add aliases
-ln -s ~/.dotfiles/.aliases.zsh  $HOME/.aliases.zsh
+ln -s ~/.dotfiles/.aliases.zsh $HOME/.aliases.zsh
 
 # create dir for Iterm
 mkdir /Users/dmytro.liakhov/iterm-config
