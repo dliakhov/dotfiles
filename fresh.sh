@@ -59,6 +59,9 @@ ln -s ~/.dotfiles/.mackup.cfg $HOME/.mackup.cfg
 # Add aliases
 ln -s ~/.dotfiles/.aliases.zsh $HOME/.aliases.zsh
 
+# Add utils
+ln -s ~/.dotfiles/.utils.zsh $HOME/.utils.zsh
+
 # create dir for Iterm
 mkdir ~/iterm-config
 cp ~/Library/Preferences/com.googlecode.iterm2.plist ~/iterm-config

@@ -132,20 +132,19 @@ export PATH=$PATH:$GOPATH/bin
 export GOROOT="$HOME/.gobrew/current/go"
 export GOBIN=$GOROOT/bin
 
-# Dentlply Sirona
-export GOPRIVATE=bitbucket.dentsplysirona.com/*
-
-# devcontainer Sirona
-export LANG="en_US.UTF-8"
-export LC_ALL="POSIX"
-
 export PATH=$PATH:/usr/local/opt/mysql-client/bin
 
 # add google cloud sdk
 export PATH=$PATH:~/google-cloud-sdk/bin
-
+  
 # add psql
 export PATH="/usr/local/opt/libpq/bin:$PATH"
+
+# add zig
+export PATH="$HOME/zig:$PATH"
+export PATH="$HOME/zls:$PATH"
+
+export CC=gcc
 
 # super slow plugin
 export NVM_DIR="$HOME/.nvm"
@@ -170,11 +169,16 @@ inspec() { docker run -it --rm -v $(pwd):/share chef/inspec "$@"; }
 
 eval "$(direnv hook zsh)"
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
 
 # The next line enables shell command completion for gcloud.
-if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export PATH="/opt/homebrew/opt/llvm@12/bin:$PATH"
+
+# Created by `pipx` on 2024-03-29 15:35:10
+export PATH="$PATH:/Users/dliakhov/.local/bin"
+[[ -s /Users/dliakhov/.rsvm/rsvm.sh ]] && . /Users/dliakhov/.rsvm/rsvm.sh # This loads RSVM

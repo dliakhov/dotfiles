@@ -1,9 +1,9 @@
 # Shortcuts
 alias reloadshell="source $HOME/.zshrc"
-alias shrug="echo '¯\_(ツ)_/¯' | pbcopy"
 alias c="clear"
 
 alias k="kubectl"
+alias kc="kubectx"
 alias mux="tmuxinator"
 
 
@@ -26,3 +26,5 @@ alias resolve="git add . && git commit --no-edit"
 alias stash="git stash -u"
 alias unstage="git restore --staged ."
 alias wip="commit wip"
+alias rebase="git rebase"
+alias dc="docker compose"

@@ -21,6 +21,7 @@ brew 'tfenv'
 brew 'direnv'
 brew 'kind'
 brew 'wget'
+brew 'kubectx'
 
 # Apps
 cask 'iterm2'
