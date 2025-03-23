@@ -21,6 +21,9 @@ cp ~/.dotfiles/keyboard_layouts/*  ~/Library/Keyboard\ Layouts
 mkdir ~/iterm-config
 cp ~/Library/Preferences/com.googlecode.iterm2.plist ~/iterm-config
 
+# Install gobrew
+curl -sL https://raw.githubusercontent.com/kevincobain2000/gobrew/master/git.io.sh | bash
+
 # Install fish shell from backup
 echo "Replacing fish shell from backup"
 rm -rf ~/.config/fish

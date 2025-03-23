@@ -21,8 +21,13 @@ brew 'tfenv'
 brew 'direnv'
 brew 'kind'
 brew 'wget'
+brew 'kubernetes-cli'
 brew 'kubectx'
+brew 'helm'
 brew 'inetutils'
+brew 'fzf'
+brew 'mongosh'
+brew 'pyenv'
 
 # Apps
 cask 'iterm2'
