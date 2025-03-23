@@ -51,7 +51,6 @@ cp ~/.dotfiles/keyboard_layouts/*  ~/Library/Keyboard\ Layouts
 # Clone Github repositories
 ~/.dotfiles/clone.sh
 
-
 # Symlink the Mackup config file to the home directory
 rm $HOME/.mackup.cfg
 ln -s ~/.dotfiles/.mackup.cfg $HOME/.mackup.cfg

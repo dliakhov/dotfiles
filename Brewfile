@@ -6,12 +6,12 @@ tap 'homebrew/bundle'
 
 # Binaries
 brew 'zsh' # Latest Zsh version
+brew 'fish'
 brew 'git'
 brew 'grep'
 brew 'httpie'
 brew 'jq' # Used for spatie/visit
-brew 'mackup'
-brew 'mas' # Mac App Store manager
+brew 'yq'
 
 # Development
 brew 'node'
@@ -22,6 +22,7 @@ brew 'direnv'
 brew 'kind'
 brew 'wget'
 brew 'kubectx'
+brew 'inetutils'
 
 # Apps
 cask 'iterm2'
@@ -31,12 +32,14 @@ cask 'docker'
 cask 'firefox'
 cask 'google-chrome'
 cask 'slack'
-cask 'telegram-desktop'
 cask 'transmit'
 cask 'protonvpn'
 cask 'visual-studio-code'
 cask 'zoom'
 cask 'jetbrains-toolbox'
+cask 'obsidian'
+cask 'openlens'
+cask 'studio-3t'
 
 # Fonts
 cask 'font-fira-code'
