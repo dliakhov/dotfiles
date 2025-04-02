@@ -8,7 +8,6 @@ alias mux="tmuxinator"
 alias reloadfish="source ~/.config/fish/config.fish"
 
 # Directories
-alias fishfiles="cd $FISH_PATH"
 alias dotfiles="cd $DOTFILES"
 
 # Git
@@ -33,4 +32,4 @@ alias dc="docker compose"
 alias d="docker"
 
 # IDEA and Toolbox
-alias idea="/Users/dliakhov/Library/Application\ Support/JetBrains/Toolbox/scripts/idea"
+alias idea="$HOME/Library/Application\ Support/JetBrains/Toolbox/scripts/idea"

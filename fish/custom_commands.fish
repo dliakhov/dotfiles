@@ -32,6 +32,14 @@ function golint_master_changes
     golangci-lint run -v --new-from-rev=origin/master --issues-exit-code 0 --print-issued-lines=false --out-format code-climate:gl-code-quality-report.json,line-number 
 end
 
+function uc-elc-stg
+    set ls_env "stg"; kubectl port-forward --namespace $ls_env-universal-search-eck svc/$ls_env-universal-search-es-internal-lb 9202:9200 --context ls-b2b-eck-network-us-west1-$ls_env
+end
+
+function uc-elc-prod
+    set ls_env "prd"; kubectl port-forward --namespace $ls_env-universal-search-eck svc/$ls_env-universal-search-es-internal-lb 9202:9200 --context ls-b2b-eck-network-us-west1-$ls_env
+end
+
 # Navigation commands
 function take
     mkdir -p $argv; and cd $argv

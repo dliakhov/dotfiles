@@ -63,7 +63,9 @@ set -U async_prompt_functions fish_right_prompt
 # RSVM configuration
 
 # Cargo & Rust
-source "$HOME/.cargo/env.fish"
 
 # Pyenv configuration
 pyenv init - fish | source
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/dmytroliakhov/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/dmytroliakhov/Downloads/google-cloud-sdk/path.fish.inc'; end

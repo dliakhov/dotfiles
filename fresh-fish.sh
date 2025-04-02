@@ -13,7 +13,7 @@ brew update
 
 # Install all our dependencies with bundle (See Brewfile)
 brew tap homebrew/bundle
-brew bundle --file $DOTFILES/Brewfile
+brew bundle --file ./Brewfile
 
 # Add custom keyboard layouts
 cp ~/.dotfiles/keyboard_layouts/*  ~/Library/Keyboard\ Layouts
