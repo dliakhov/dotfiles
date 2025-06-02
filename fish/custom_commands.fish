@@ -34,6 +34,9 @@ function nimages
 
     # First pass to calculate maximum lengths
     for line in $lines
+        if string match -r "^POD" $line -q
+            continue  # Skip the header line
+        end
         set pod (echo $line | awk '{print $1}')
         set image (echo $line | awk '{print $2}')
         set date_str (echo $line | awk '{print $3}')
@@ -61,6 +64,9 @@ function nimages
 
     # Second pass to print formatted output
     for line in $lines
+        if string match -r "^POD" $line -q
+            continue  # Skip the header line
+        end
         set pod (echo $line | awk '{print $1}')
         set image (echo $line | awk '{print $2}')
         set date_str (echo $line | awk '{print $3}')
@@ -69,7 +75,7 @@ function nimages
         set created (date -j -f "%Y-%m-%dT%H:%M:%SZ" "$date_str" +%s)
 
         # Get the current time in epoch
-        set now (date +%s)
+        set now (date -j -f "%Y-%m-%dT%H:%M:%SZ" (date -u +"%Y-%m-%dT%H:%M:%SZ") +%s)
 
         # Calculate elapsed time
         set elapsed (math "$now - $created")
