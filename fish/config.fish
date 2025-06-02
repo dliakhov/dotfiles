@@ -23,6 +23,8 @@ set -x GOPATH $HOME/go
 set -x GOROOT "$HOME/.gobrew/current/go"
 set -x GOBIN $GOROOT/bin
 set -x CGO_ENABLED 0
+set -x GOPRIVATE gitlab.com/lightspeed-b2b/go
+set -x GO111MODULE on
 
 fish_add_path $HOME/.gobrew/current/go/bin
 fish_add_path $GOPATH/bin
@@ -69,3 +71,6 @@ pyenv init - fish | source
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/dmytroliakhov/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/dmytroliakhov/Downloads/google-cloud-sdk/path.fish.inc'; end
+
+# Added by Windsurf
+fish_add_path /Users/dmytroliakhov/.codeium/windsurf/bin
