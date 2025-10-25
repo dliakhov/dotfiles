@@ -69,6 +69,13 @@ set -U async_prompt_functions fish_right_prompt
 # Pyenv configuration
 pyenv init - fish | source
 
+# Set colors for ls output, check with `man ls` for more details LSCOLORS variable
+set -gx LSCOLORS gx
+
+# Configure nvm
+set CURRENT_NODE 16.7.0
+nvm use $CURRENT_NODE  > /dev/null
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/dmytroliakhov/Downloads/google-cloud-sdk/path.fish.inc' ]; . '/Users/dmytroliakhov/Downloads/google-cloud-sdk/path.fish.inc'; end
 

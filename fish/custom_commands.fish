@@ -22,14 +22,15 @@ end
 
 function nimages
     if test -z $argv
-        set lines (kubectl get pods -o=custom-columns='POD:.metadata.name,IMAGE:.spec.containers[*].image,CREATED:.metadata.creationTimestamp')
-    else 
-        set lines (kubectl get pods -o=custom-columns='POD:.metadata.name,IMAGE:.spec.containers[*].image,CREATED:.metadata.creationTimestamp' | grep $argv)
+        set lines (kubectl get pods -o=custom-columns='POD:.metadata.name,IMAGE:.spec.containers[*].image,STATUS:.status.phase,CREATED:.metadata.creationTimestamp')
+    else
+        set lines (kubectl get pods -o=custom-columns='POD:.metadata.name,IMAGE:.spec.containers[*].image,STATUS:.status.phase,CREATED:.metadata.creationTimestamp' | grep $argv)
     end
 
     # Initialize max lengths
     set max_pod_length 0
     set max_image_length 0
+    set max_status_length 0
     set max_elapsed_length 0
 
     # First pass to calculate maximum lengths
@@ -39,11 +40,13 @@ function nimages
         end
         set pod (echo $line | awk '{print $1}')
         set image (echo $line | awk '{print $2}')
-        set date_str (echo $line | awk '{print $3}')
+        set pod_status (echo $line | awk '{print $3}')
+        set date_str (echo $line | awk '{print $4}')
 
         # Update max lengths
         set pod_length (string length $pod)
         set image_length (string length $image)
+        set status_length (string length $pod_status)
 
         if test $pod_length -gt $max_pod_length
             set max_pod_length $pod_length
@@ -52,15 +55,20 @@ function nimages
         if test $image_length -gt $max_image_length
             set max_image_length $image_length
         end
+
+        if test $status_length -gt $max_status_length
+            set max_status_length $status_length
+        end
     end
 
     # Add extra spaces for titles
     set max_pod_length (math "$max_pod_length + 2")
     set max_image_length (math "$max_image_length + 2")
+    set max_status_length (math "$max_status_length + 2")
     set max_elapsed_length 12  # Fixed width for elapsed time column
 
     # Print the header with bold titles
-    printf "%-*s %-*s %-*s\n" $max_pod_length "POD NAME" $max_image_length "IMAGE NAME" $max_elapsed_length "STARTED AGO"
+    printf "%-*s %-*s %-*s %-*s\n" $max_pod_length "POD NAME" $max_image_length "IMAGE NAME" $max_status_length "STATUS" $max_elapsed_length "STARTED AGO"
 
     # Second pass to print formatted output
     for line in $lines
@@ -69,12 +77,12 @@ function nimages
         end
         set pod (echo $line | awk '{print $1}')
         set image (echo $line | awk '{print $2}')
-        set date_str (echo $line | awk '{print $3}')
+        set pod_status (echo $line | awk '{print $3}')
+        set date_str (echo $line | awk '{print $4}')
 
         # Convert the date string to epoch time
         set created (date -j -f "%Y-%m-%dT%H:%M:%SZ" "$date_str" +%s)
 
-        # Get the current time in epoch
         set now (date -j -f "%Y-%m-%dT%H:%M:%SZ" (date -u +"%Y-%m-%dT%H:%M:%SZ") +%s)
 
         # Calculate elapsed time
@@ -112,7 +120,7 @@ function nimages
         end
 
         # Print the result with fixed-width formatting
-        printf "%-*s %-*s %-*s\n" $max_pod_length $pod $max_image_length $image $max_elapsed_length $elapsed_time
+        printf "%-*s %-*s %-*s %-*s\n" $max_pod_length $pod $max_image_length $image $max_status_length $pod_status $max_elapsed_length $elapsed_time
     end
 end
 
@@ -120,17 +128,21 @@ function golint_master_changes
     golangci-lint run -v --new-from-rev=origin/master --issues-exit-code 0 --print-issued-lines=false --out-format code-climate:gl-code-quality-report.json,line-number 
 end
 
+
 function uc_elc_stg
-    set ls_env "stg"; kubectl port-forward --namespace $ls_env-universal-search-eck svc/$ls_env-universal-search-es-internal-lb 9202:9200 --context ls-b2b-eck-network-us-west1-$ls_env
-end
-
-
-function uc_elc_stg_new
     set ls_env "stg"; kubectl port-forward --namespace $ls_env-universal-search-1-eck svc/$ls_env-universal-search-1-es-internal-lb 9206:9200 --context ls-b2b-eck-network-us-west1-$ls_env
 end
 
 function uc_elc_prod
-    set ls_env "prd"; kubectl port-forward --namespace $ls_env-universal-search-eck svc/$ls_env-universal-search-es-internal-lb 9204:9200 --context ls-b2b-eck-network-us-west1-$ls_env
+    set ls_env "prd"; kubectl port-forward --namespace $ls_env-universal-search-1-eck svc/$ls_env-universal-search-1-es-internal-lb 9208:9200 --context ls-b2b-eck-network-us-west1-$ls_env
+end
+
+function uc_elc_pre_prod
+    set ls_env "pre-prd"; kubectl port-forward --namespace $ls_env-universal-search-1-eck svc/$ls_env-universal-search-1-es-internal-lb 9214:9200 --context ls-b2b-eck-network-us-west1-$ls_env
+end
+
+function uc_elc_sbx
+    set ls_env "sbx"; kubectl port-forward --namespace $ls_env-universal-search-1-eck svc/$ls_env-universal-search-1-es-internal-lb 9212f:9200 --context ls-b2b-eck-network-us-west1-$ls_env
 end
 
 function set_nuorder_token
